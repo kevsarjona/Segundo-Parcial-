@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay safe | Login</title>
+    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="stylesheet" href="css/stylelogin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Raleway&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+    <header>
+        <div class="logotipo"> 
+            <h1>Stay safe</h1>
+            <img src="images/icon-logo.png" alt="">
+        </div>
+        
+
+        <h2>TENGA UNA VIDA SANA Y CONTROLADA</h2>
+
+    </header>
+
+
+    <main>
+        <form id="formulario">
+
+            <p>Ingrese sus datos para iniciar sesion</p>
+            
+            <div >
+                <label for="mail"></label>
+                <input type="email"  id="typeEmail"  placeholder="Correo electronico*">
+           </div>
+    
+           <div>
+                <label for="password"></label>
+                <input type="password"  id="password" value="" placeholder="Contraseña*"> 
+           </div>
+    
+    
+           <div class="buton-signin">
+                <input class="submit" id="buton" type="submit" onclick='return enviarFormulario()' value="INICIAR SESION">  
+           </div>
+
+           <div class="register">
+                <a href="">REGISTRARSE</a>
+           </div>
+
+        </form>
+
+        <div class="fondo">
+            <img src="images/img_beneficios.png" alt="">
+        </div>
+
+        
+
+    </main>
+
+
+
+    <footer>
+        <div class="links">
+            <a href="">About Us</a>
+            <a href="">Terms Of Use</a>
+            <a href="">Privacy Policy</a>
+        </div>
+
+        
+    </footer>
+    
+
+
+    <script>
+        
+    
+    const form  = document.getElementsByTagName('form')[0];
+
+const email = document.getElementById('mail');
+const emailError = document.querySelector('#mail + span.error');
+
+email.addEventListener('input', function (event) {
+  
+
+  if (email.validity.valid) {
+   
+    emailError.innerHTML = ''; 
+    emailError.className = 'error'; 
+  } else {
+    
+    showError();
+  }
+});
+
+form.addEventListener('submit', function (event) {
+  
+
+  if(!email.validity.valid) {
+    
+    showError();
+    
+    event.preventDefault();
+  }
+});
+
+function showError() {
+  if(email.validity.valueMissing) {
+    
+    emailError.textContent = 'You need to enter an e-mail address.';
+  } else if(email.validity.typeMismatch) {
+    // If the field doesn't contain an email address
+    // display the following error message.
+    emailError.textContent = 'Entered value needs to be an e-mail address.';
+  } else if(email.validity.tooShort) {
+    // If the data is too short
+    // display the following error message.
+    emailError.textContent = `Email should be at least ${ email.minLength } characters; you entered ${ email.value.length }.`;
+  }
+
+  // Set the styling appropriately
+  emailError.className = 'error active';
+}
+
+    </script>
+
+
+
+
+
+
+    
+</body>
+
+</html>
